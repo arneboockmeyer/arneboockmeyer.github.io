@@ -44,7 +44,10 @@
 
 <p>In diesem Polymerelement wird außerdem die Controlbar (video-controlbar) angelegt.</p>
 
-<p>Die passende .dart-Datei verwaltet die Attribute des Video-Players. Diese sind auch über ein Interface nach außen verfügbar. Möchte man beispielsweise über eine andere Dart-Datei Einfluss auf den Video-Player nehmen, kann man dies über die Methoden dieser Datei tun.</p>
+<p>Die passende .dart-Datei verwaltet die Attribute des Video-Players. Diese sind auch über ein Interface nach außen verfügbar (siehe unten). Möchte man beispielsweise über eine andere Dart-Datei Einfluss auf den Video-Player nehmen, kann man dies über die Methoden dieser Datei tun.</p>
+
+<p>Das Starten des Videos kann übrigens auch über eine Fläche über dem Videoplayer passieren:
+<img src="https://owncloud.hpi.de/index.php/apps/files_sharing/ajax/publicpreview.php?x=1440&amp;y=772&amp;a=true&amp;file=%252FWebprogrammierungoverlay.png&amp;t=ea3c15084cddc82ce4edee558bc97ff6&amp;scalingup=0" alt="Overlay"></p>
 
 <h3>
 <a id="video-streamhtml" class="anchor" href="#video-streamhtml" aria-hidden="true"><span class="octicon octicon-link"></span></a>video-stream.html</h3>
@@ -55,7 +58,7 @@
 
 <p>Dem video-stream Tag kann man außerdem auch die URL für das Poster (Attribut: poster) und das Seitenverhältnis (Attribut: ratio, Default: 16:9) übergeben.</p>
 
-<p>Außerdem bekommt dieses Polymer-Element die Untertitel über das Attribut "subtitles" übergeben. Diese bekommt sie in Form eines Links zu einer vtt Datei. Dieser Link wird dann in das Track Element von HTML eingebunden. Das hat den Vorteil, dass beispielsweise Screenreader damit umgehen können.</p>
+<p>Außerdem bekommt dieses Polymer-Element die Untertitel über das Attribut "subtitles" übergeben. Diese bekommt sie in Form eines Links zu einer Datei im WebVTT Format (.vtt). Dieser Link wird dann in das Track Element von HTML eingebunden. Das hat den Vorteil, dass beispielsweise Screenreader damit umgehen können.</p>
 
 <p>Die Dart-Datei dieses Polymer-Elements setzt ausschließlich die übergebene Werte und wird somit von außerhalb gesteuert.</p>
 
@@ -86,6 +89,9 @@ Ist ein bubbleText-Attribut (z.B. bei der ProgressBar) gesetzt, wird bei Ziehen 
 
 <p>Im Dart-Skirpt werden die Klicks auf diesen Slider abgefangen. Über ein Datenbinding wird der neue Wert an die Controlbar weitergeben.</p>
 
+<p>Die Sliderbar zeigt übrigens auch die aktuelle Position des Cursors innerhalb der Sliderbar an:
+<img src="https://owncloud.hpi.de/index.php/apps/files_sharing/ajax/publicpreview.php?x=1440&amp;y=772&amp;a=true&amp;file=%252FWebprogrammierungsliderbar.jpg&amp;t=813da8020db0e6d0d8d78107ac972b83&amp;scalingup=0" alt="Sliderbar"></p>
+
 <h3>
 <a id="video-thumbnailshtml" class="anchor" href="#video-thumbnailshtml" aria-hidden="true"><span class="octicon octicon-link"></span></a>video-thumbnails.html</h3>
 
@@ -99,7 +105,8 @@ Ist ein bubbleText-Attribut (z.B. bei der ProgressBar) gesetzt, wird bei Ziehen 
 <pre><code>&lt;video-player&gt;
   &lt;video-stream
     poster="{poster-url}"
-    sd_src="{video-url}"&gt;
+    sd_src="{video-url}"
+    subtitles="{subtitles-url}"&gt;
   &lt;/video-stream&gt;
   &lt;video-stream
     poster="{poster-url}"
@@ -107,6 +114,11 @@ Ist ein bubbleText-Attribut (z.B. bei der ProgressBar) gesetzt, wird bei Ziehen 
     hd_src="{hd-video-url}"
     ratio="4:3"&gt;
   &lt;/video-stream&gt;
+  &lt;video-thumbnail img_src="{thumbnail-url}" starttime="{x}"&gt;&lt;/video-thumbnail&gt;
+  &lt;video-thumbnail img_src="{thumbnail-url}" starttime="{x}"&gt;&lt;/video-thumbnail&gt;
+  &lt;video-thumbnail img_src="{thumbnail-url}" starttime="{x}"&gt;&lt;/video-thumbnail&gt;
+  &lt;video-thumbnail img_src="{thumbnail-url}" starttime="{x}"&gt;&lt;/video-thumbnail&gt;
+  &lt;video-thumbnail img_src="{thumbnail-url}" starttime="{x}"&gt;&lt;/video-thumbnail&gt;
 &lt;/video-player&gt;
 </code></pre>
 
@@ -115,7 +127,7 @@ Ist ein bubbleText-Attribut (z.B. bei der ProgressBar) gesetzt, wird bei Ziehen 
 <h2>
 <a id="beispiele" class="anchor" href="#beispiele" aria-hidden="true"><span class="octicon octicon-link"></span></a>Beispiele</h2>
 
-<p>Der Videoplayer kann verschieden konfiguriert werden.</p>
+<p>Der Videoplayer kann verschieden konfiguriert werden. Wir zeigen hier einige Beispiele.</p>
 
 <h3>
 <a id="single-stream" class="anchor" href="#single-stream" aria-hidden="true"><span class="octicon octicon-link"></span></a>Single-Stream</h3>
@@ -174,7 +186,7 @@ Ist ein bubbleText-Attribut (z.B. bei der ProgressBar) gesetzt, wird bei Ziehen 
 <a id="mit-thumbnails" class="anchor" href="#mit-thumbnails" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mit Thumbnails</h3>
 
 <p>Thumnails sind ein weiteres custom Polymer-Element, sie können einfach nach folgendem Muster nach den video-streams eingefügt werden. Die starttime wird in Sekunden angegeben.
-<img src="https://owncloud.hpi.de/index.php/apps/files_sharing/ajax/publicpreview.php?x=1440&amp;y=772&amp;a=true&amp;file=%252FWebprogrammierungdualStreamWithSubtitles.png&amp;t=9abf7703473b8dcfdbab43b5e1f044b3&amp;scalingup=0" alt="Dual Stream With Thumbnails Example"></p>
+<img src="https://owncloud.hpi.de/index.php/apps/files_sharing/ajax/publicpreview.php?x=1440&amp;y=772&amp;a=true&amp;file=%252FWebprogrammierungdualStreamWithThumbnails.png&amp;t=b0463ddbe8a560c3ba944d00acdd3d85&amp;scalingup=0" alt="Dual Stream With Thumbnails Example"></p>
 
 <pre><code>&lt;video-player id="player"&gt;
   &lt;video-stream
@@ -219,7 +231,7 @@ Ist ein bubbleText-Attribut (z.B. bei der ProgressBar) gesetzt, wird bei Ziehen 
 
 <p><strong>volume="{int volume [0, 100]}"</strong>: Lautstärke zwischen 0 und 100. Reflectable</p>
 
-<p><strong>showSubtitles (ohneWert)</strong>: Initial Untertitel anzeigen. Reflectable</p>
+<p><strong>showSubtitles (ohne Wert)</strong>: Initial Untertitel anzeigen. Reflectable</p>
 
 <h2>
 <a id="browserkompatibilität" class="anchor" href="#browserkompatibilit%C3%A4t" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browserkompatibilität</h2>
